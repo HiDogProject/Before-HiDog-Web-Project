@@ -1,4 +1,4 @@
-package org.hidog.map.controllers;
+package org.hidog.board.controllers;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -6,13 +6,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/map")
 @RequiredArgsConstructor
-public class MapController {
+@RequestMapping("/board")
+public class BoardController {
 
-    @GetMapping("/main")
-    public String join() {
+    @GetMapping("/list") // 게시판리스트 조회
+    public String boardList() {
 
-        return "front/map/tMap";
+        return "front/board/boardList";
     }
 }
