@@ -16,7 +16,10 @@ import org.springframework.web.bind.annotation.*;
 public class MemberController  {
 
 
-
+    @ModelAttribute
+   public RequestLogin requestLogin(){
+       return new RequestLogin();
+   }
 
 
     @GetMapping("/join")
