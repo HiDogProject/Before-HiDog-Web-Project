@@ -17,8 +17,8 @@ public class MypageController { /* 구성 순서 : 컨트롤러-뷰-엔티티-�
      * -> 회원 정보 수정 페이지에서 원하는 부분 수정 -> 수정하기 클릭 시 수정 내용 저장 및 정보 변경, 마이 페이지 홈으로 이동
      * 4) 마이 페이지 -> 프로필 클릭 시 이미지 변경 창이 팝업 생성 -> 이미지 변경 후 변경 내용 반영
      * 5) 마이 페이지 -> 찜한 목록 보기 버튼 클릭 시 찜 목록 페이지로 이동 (당근 마켓 처럼 이미지 형식으로)
-     * 6) 마이 페이지 -> 작성한 글 목록 보기 버튼 클릭 시 글 목록 페이지로 이동 -> 본인이 쓴 글 조회, 수정, 삭제 가능
-     * 7) 마이 페이지 -> 판매 & 구매 내역 버튼 클릭 시 판매 & 구매 내역으로 이동 -> 본인의 판매 & 구매 내역 조회, 수정, 삭제 가능
+     * 6) 마이 페이지 -> 작성한 글 목록 보기 버튼 클릭 시 글 목록 페이지로 이동 -> 본인이 쓴 글 조회 가능
+     * 7) 마이 페이지 -> 판매 & 구매 내역 버튼 클릭 시 판매 & 구매 내역으로 이동 -> 본인의 판매 & 구매 내역 조회 가능
      */
 
     // 마이 페이지 홈
@@ -30,48 +30,48 @@ public class MypageController { /* 구성 순서 : 컨트롤러-뷰-엔티티-�
     // 마이 페이지 -> 회원 정보 확인 버튼 클릭 시 회원 정보 페이지로 이동
     @GetMapping("/info")
     public String viewMemberInfo() {
-        return "mypage/info";
+        return "front/mypage/info";
     }
 
     // 마이 페이지 -> 회원 정보 수정 버튼 클릭 시 본인 인증 후 회원 정보 수정 페이지로 이동
     @GetMapping("/info/change")
     public String changeMemberInfo() {
-        return "mypage/changeInfo";
+        return "front/mypage/changeInfo";
     }
 
     // 회원 정보 수정 페이지에서 수정 내용 저장 및 정보 변경, 마이 페이지 홈으로 이동
     @PostMapping("/info/change")
     public String saveChangedMemberInfo() {
-        return "redirect:/mypage";
+        return "redirect:/myhome";
     }
 
     // 마이 페이지 -> 프로필 클릭 시 이미지 변경 창이 팝업 생성
     @GetMapping("/profile")
     public String changeProfileImage() {
-        return "mypage/changeProfile";
+        return "front/mypage/changeProfile";
     }
 
     // 프로필 이미지 변경 후 변경 내용 반영
     @PostMapping("/profile")
     public String saveProfileImage() {
-        return "redirect:/mypage";
+        return "redirect:/myhome";
     }
 
     // 마이 페이지 -> 찜한 목록 보기 버튼 클릭 시 찜 목록 페이지로 이동
     @GetMapping("/like")
     public String viewlike() {
-        return "mypage/like";
+        return "front/mypage/like";
     }
 
     // 마이 페이지 -> 작성한 글 목록 보기 버튼 클릭 시 글 목록 페이지로 이동
     @GetMapping("/post")
     public String viewMyPost() {
-        return "mypage/post";
+        return "front/mypage/post";
     }
 
     // 마이 페이지 -> 판매 & 구매 내역 버튼 클릭 시 판매 & 구매 내역으로 이동
     @GetMapping("/transactions")
     public String viewSellAndBuy() {
-        return "mypage/sellAndBuy";
+        return "front/mypage/sellAndBuy";
     }
 }
