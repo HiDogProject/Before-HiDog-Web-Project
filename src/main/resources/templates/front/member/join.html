@@ -3,8 +3,95 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{front/layouts/main}">
 
-    <main layout:fragment="content">
-        <h1 th:text="#{회원가입}"></h1>
+<head>
+    <title>회원 가입</title>
+</head>
 
-    </main>
+<body>
+<main layout:fragment="content">
+    <h1>회원 가입</h1>
+    <form name="frmRegist" method="POST" th:action="@{/app/member/join}" autocomplete="off" th:object="${requestJoin}">
+        <!-- 글로벌 오류 메시지 -->
+        <div class="error global" th:each="err : ${#fields.globalErrors()}" th:text="${err}"></div>
+
+        <!-- 아이디 입력 필드 -->
+        <dl>
+            <dt>아이디</dt>
+            <dd>
+                <input type="text" name="id" th:field="*{id}" />
+                <div class="error" th:each="err : ${#fields.errors('id')}" th:text="${err}"></div>
+            </dd>
+        </dl>
+
+        <!-- 이메일 입력 필드 -->
+        <dl>
+            <dt>이메일</dt>
+            <dd>
+                <input type="email" name="email" th:field="*{email}" />
+                <div class="error" th:each="err : ${#fields.errors('email')}" th:text="${err}"></div>
+            </dd>
+        </dl>
+
+        <!-- 비밀번호 입력 필드 -->
+        <dl>
+            <dt>비밀번호</dt>
+            <dd>
+                <input type="password" name="password" th:field="*{password}" />
+                <div class="error" th:each="err : ${#fields.errors('password')}" th:text="${err}"></div>
+            </dd>
+        </dl>
+
+        <!-- 비밀번호 확인 입력 필드 -->
+        <dl>
+            <dt>비밀번호 확인</dt>
+            <dd>
+                <input type="password" name="confirmPassword" th:field="*{confirmPassword}" />
+                <div class="error" th:each="err : ${#fields.errors('confirmPassword')}" th:text="${err}"></div>
+            </dd>
+        </dl>
+
+        <!-- 닉네임 입력 필드 -->
+        <dl>
+            <dt>닉네임</dt>
+            <dd>
+                <input type="text" name="nickName" th:field="*{nickName}" />
+                <div class="error" th:each="err : ${#fields.errors('nickName')}" th:text="${err}"></div>
+            </dd>
+        </dl>
+
+        <!-- 주소1 입력 필드 -->
+        <dl>
+            <dt>주소1</dt>
+            <dd>
+                <input type="text" name="address1" th:field="*{address1}" />
+                <div class="error" th:each="err : ${#fields.errors('address1')}" th:text="${err}"></div>
+            </dd>
+        </dl>
+
+        <!-- 주소2 입력 필드 -->
+        <dl>
+            <dt>주소2</dt>
+            <dd>
+                <input type="text" name="address2" th:field="*{address2}" />
+                <div class="error" th:each="err : ${#fields.errors('address2')}" th:text="${err}"></div>
+            </dd>
+        </dl>
+
+        <!-- 약관 동의 체크박스 -->
+        <div class="terms">
+            <div class="tit">회원가입 약관</div>
+            <div class="terms-contents">약관 내용 뭐하지</div>
+            <input type="checkbox" name="agree" value="true" id="agree" th:field="*{agree}" />
+            <label for="agree">약관 동의</label>
+            <div class="error" th:each="err : ${#fields.errors('agree')}" th:text="${err}"></div>
+        </div>
+
+        <!-- 버튼 -->
+        <div class="buttons">
+            <button type="reset">다시 입력</button>
+            <button type="submit">가입하기</button>
+        </div>
+    </form>
+</main>
+</body>
 </html>
