@@ -2,6 +2,7 @@ package org.hidog.member.controllers;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.hidog.member.validators.JoinValidator;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,7 +22,15 @@ public class MemberController  {
     }
 
     @PostMapping("/join")
-    public String joinPs(@Valid RequestJoin form, Errors errors){
+    public String joinPs(@Valid RequestJoin form, Errors errors) {
+
+        //JoinValidator.validate(form, errors);
+
+        if (errors.hasErrors()) {
+            return "front/member/join";
+        }
+
+        // memberSaveService.save(form); 회원 가입 완료
 
         return "redirect:/member/login";
     }
