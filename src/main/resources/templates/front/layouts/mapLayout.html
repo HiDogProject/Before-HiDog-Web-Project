@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>simpleMap</title>
+    <script src="https://apis.openapi.sk.com/tmap/vectorjs?version=1&appKey=AMJpAtQzfg6RGV9RB1oHM3ZaCPp0T0Qx4nYhDbCZ"></script>
+    <script th:src="@{/js/map.js}"></script>
+    <title>
+        <th:block th:if="${pageTitle != null}"
+        th:text="${#strings.concat(pageTitle, ' - ')}"></th:block>
+        티맵
+    </title>
+    <link rel="stylesheet" type="text/css" th:href="${@utils.url('/common/css/style.css')}">
+    <link th:if="${addCss != null}" rel="stylesheet" type="text/css"
+          th:each="cssFile: ${addCss}" th:href="${@utils.url(#strings.concat('/front/css/', cssFile, '.css'))}">
+    <th:block layout:fragment="addCss"></th:block>
+
+    <script th:src="${@utils.url('/common/js/common.js')}"></script>
+    <script th:if="${addScript != null}" th:each="jsFile : ${addScript}" th:src="${@utils.url(#strings.concat('/front/js/', jsFile, '.js'))}"></script>
+    <th:block layout:fragment="addScript"></th:block>
+</head>
+<body onload="initTmap()">
+<header th:replace="~{front/outlines/_header::common}"></header>
+<main layout:fragment="content"></main>
+<footer th:replace="~{front/outlines/_footer::common}"></footer>
+<iframe name="ifrmHidden" class="dn"></iframe>
+</body>
+</html>
