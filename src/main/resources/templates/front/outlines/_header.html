@@ -13,6 +13,7 @@
                 <a th:href="@{/mypage}" th:text="#{마이페이지}"></a>
 
                 <a sec:authorize="hasAnyAuthority('ADMIN')" th:href="@{/admin}" target="_blank" th:text="#{사이트_관리}"></a>
+                
             </th:block>
         </div>
     </header>
