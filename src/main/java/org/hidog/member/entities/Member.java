@@ -35,6 +35,4 @@ public class Member {
     @ToString.Exclude
     @OneToMany(mappedBy = "member")
     private List<Authorities> authorities;
-
-
 }
