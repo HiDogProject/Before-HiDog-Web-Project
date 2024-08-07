@@ -13,9 +13,7 @@ import java.util.Collection;
 @Builder
 public class MemberInfo implements UserDetails, Serializable {
 
-    private static final long serialVersionUID = 1L;
-
-    private String email;
+    private String nickName;
     private String password;
     private Collection<? extends GrantedAuthority> authorities;
     private Member member;
@@ -32,7 +30,7 @@ public class MemberInfo implements UserDetails, Serializable {
 
     @Override
     public String getUsername() {
-        return email;
+        return nickName;
     }
 
     @Override

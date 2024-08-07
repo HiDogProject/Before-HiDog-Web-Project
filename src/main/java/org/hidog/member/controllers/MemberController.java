@@ -12,6 +12,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.hidog.member.validators.JoinValidator;
 
+
 import java.util.List;
 
 @Slf4j
@@ -35,11 +36,13 @@ public class MemberController {
 
         joinValidator.validate(form, errors);
 
+
         if (errors.hasErrors()) {
             return "front/member/join";
         }
 
         memberSaveService.save(form); // 회원 가입 처리
+
 
         return "redirect:/member/login";
     }

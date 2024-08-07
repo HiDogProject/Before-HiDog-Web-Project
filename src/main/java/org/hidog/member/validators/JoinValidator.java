@@ -30,11 +30,12 @@ public class JoinValidator implements Validator, PasswordValidator {
         String password = form.getPassword();
         String confirmPassword = form.getConfirmPassword();
 
+        /*
         // 1. 이미 가입된 회원인지 체크
         if (memberRepository.existsByEmail(email)) {
             errors.rejectValue("email", "Duplicated");
         }
-
+        */
         // 2. 비밀번호, 비밀번호 확인 일치 여부
         if (!password.equals(confirmPassword)) {
             errors.rejectValue("confirmPassword", "Mismatch.password");
