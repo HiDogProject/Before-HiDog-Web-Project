@@ -75,7 +75,8 @@
         <dl>
             <dt>이메일</dt>
             <dd>
-                <input type="email" name="email" th:field="*{email}" />
+                <input type="email" id="email" th:field="*{email}" />
+                <button type="button" onclick="sendVerificationCode()">인증번호 발송</button>
                 <div class="error" th:each="err : ${#fields.errors('email')}" th:text="${err}"></div>
             </dd>
         </dl>

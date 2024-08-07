@@ -41,6 +41,20 @@ spring:
       max-request-size: 60MB
       file-size-threshold: 30MB
 
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ${mail.username}
+    password: ${mail.password}
+    properties:
+      mail:
+        transport:
+          protocol: smtp
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
 #파일 업로드 경로 설정
 file:
   upload:
