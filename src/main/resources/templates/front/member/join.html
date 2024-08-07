@@ -3,69 +3,136 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{front/layouts/main}">
 
-    <main layout:fragment="content">
-        <h1 th:text="#{회원가입}"></h1>
-        <form name="frmRegist" method="POST" th:action="@{/member/join}" autocomplete="off" th:object="${requestJoin}">
-            <div class="error global" th:each="err : ${#fields.globalErrors()}" th:text="${err}"></div>
-            <dl>
-                <dt th:text="#{아이디}"></dt>
-                <dd>
-                    <input type="text" name="id" th:field="*{id}">
-                </dd>
-            </dl>
-            <dl>
-                <dt th:text="#{이메일}"></dt>
-                <dd>
-                    <input type="text" name="email" th:field="*{email}">
-                    <div class="error" th:each="err : ${#fields.errors('email')}" th:text="${err}"></div>
-                </dd>
-            </dl>
-            <dl>
-                <dt th:text="#{비밀번호}"></dt>
-                <dd>
-                    <input type="password" name="password" th:field="*{password}">
-                    <div class="error" th:each="err : ${#fields.errors('password')}" th:text="${err}"></div>
-                </dd>
-            </dl>
-            <dl>
-                <dt th:text="#{비밀번호_확인}"></dt>
-                <dd>
-                    <input type="password" name="confirmPassword" th:field="*{confirmPassword}">
-                    <div class="error" th:each="err : ${#fields.errors('confirmPassword')}" th:text="${err}"></div>
-                </dd>
-            </dl>
-            <dl>
-                <dt th:text="#{닉네임}"></dt>
-                <dd>
-                    <input type="text" name="nickName" th:field="*{nickName}">
-                    <div class="error" th:each="err : ${#fields.errors('nickName')}" th:text="${err}"></div>
-                </dd>
-            </dl>
-            <dl>
-                <dt th:text="#{주소1}"></dt>
-                <dd>
-                    <input type="text" name="address1" th:field="*{address1}">
-                    <div class="error" th:each="err : ${#fields.errors('address1')}" th:text="${err}"></div>
-                </dd>
-            </dl>
-            <dl>
-                <dt th:text="#{주소2}"></dt>
-                <dd>
-                    <input type="text" name="address2" th:field="*{address2}">
-                    <div class="error" th:each="err : ${#fields.errors('address2')}" th:text="${err}"></div>
-                </dd>
-            </dl>
-            <div class="terms">
-                <div class="tit" th:text="#{회원가입_약관}"></div>
-                <div class="terms-contents">회원가입 약관...</div>
-                <input type="checkbox" name="agree" value="true" id="agree" th:field="*{agree}">
-                <label for="agree" th:text="${회원가입_약관_동의}"></label>
-                <div class="error" th:each="err : ${#fields.errors('agree')}" th:text="${err}"></div>
-            </div>
-            <div class="buttons">
-                <button type="reset" th:text="#{다시입력}"></button>
-                <button type="submit" th:text="#{가입하기}"></button>
-            </div>
-        </form>
-    </main>
+<head>
+    <title>회원 가입</title>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script>
+        // 본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
+        function sample6_execDaumPostcode() {
+            new daum.Postcode({
+                oncomplete: function(data) {
+                    // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+                    var addr = ''; // 주소 변수
+                    var extraAddr = ''; // 참고항목 변수
+
+                    // 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+                    if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                        addr = data.roadAddress;
+                    } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                        addr = data.jibunAddress;
+                    }
+
+                    // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+                    if (data.userSelectedType === 'R') {
+                        // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+                        if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
+                            extraAddr += data.bname;
+                        }
+                        // 건물명이 있고, 공동주택일 경우 추가한다.
+                        if (data.buildingName !== '' && data.apartment === 'Y') {
+                            extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                        }
+                        // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+                        if (extraAddr !== '') {
+                            extraAddr = ' (' + extraAddr + ')';
+                        }
+                        // 조합된 참고항목을 해당 필드에 넣는다.
+                        document.getElementById("sample6_extraAddress").value = extraAddr;
+
+                    } else {
+                        document.getElementById("sample6_extraAddress").value = '';
+                    }
+
+                    // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                    document.getElementById('sample6_postcode').value = data.zonecode;
+                    document.getElementById("sample6_address").value = addr;
+                    // 커서를 상세주소 필드로 이동한다.
+                    document.getElementById("sample6_detailAddress").focus();
+                }
+            }).open();
+        }
+    </script>
+</head>
+
+<body>
+<main layout:fragment="content">
+
+    <h1>회원 가입</h1>
+    <form name="frmRegist" method="POST" th:action="@{/app/member/join}" autocomplete="off" th:object="${requestJoin}">
+        <!-- 글로벌 오류 메시지 -->
+        <div class="error global" th:each="err : ${#fields.globalErrors()}" th:text="${err}"></div>
+
+        <!-- 아이디 입력 필드 -->
+        <dl>
+            <dt>아이디</dt>
+            <dd>
+                <input type="text" name="id" th:field="*{id}" />
+                <div class="error" th:each="err : ${#fields.errors('id')}" th:text="${err}"></div>
+            </dd>
+        </dl>
+
+        <!-- 이메일 입력 필드 -->
+        <dl>
+            <dt>이메일</dt>
+            <dd>
+                <input type="email" name="email" th:field="*{email}" />
+                <div class="error" th:each="err : ${#fields.errors('email')}" th:text="${err}"></div>
+            </dd>
+        </dl>
+
+        <!-- 비밀번호 입력 필드 -->
+        <dl>
+            <dt>비밀번호</dt>
+            <dd>
+                <input type="password" name="password" th:field="*{password}" />
+                <div class="error" th:each="err : ${#fields.errors('password')}" th:text="${err}"></div>
+            </dd>
+        </dl>
+
+        <!-- 비밀번호 확인 입력 필드 -->
+        <dl>
+            <dt>비밀번호 확인</dt>
+            <dd>
+                <input type="password" name="confirmPassword" th:field="*{confirmPassword}" />
+                <div class="error" th:each="err : ${#fields.errors('confirmPassword')}" th:text="${err}"></div>
+            </dd>
+        </dl>
+
+        <!-- 닉네임 입력 필드 -->
+        <dl>
+            <dt>닉네임</dt>
+            <dd>
+                <input type="text" name="nickName" th:field="*{nickName}" />
+                <div class="error" th:each="err : ${#fields.errors('nickName')}" th:text="${err}"></div>
+            </dd>
+        </dl>
+        <dl>
+            <dt>주소</dt>
+            <dd>
+                <input type="text" id="sample6_postcode" placeholder="우편번호">
+                <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
+                <input type="text" id="sample6_address" placeholder="주소"><br>
+                <input type="text" id="sample6_extraAddress" placeholder="참고항목">
+                <input type="text" id="sample6_detailAddress" placeholder="상세주소">
+            </dd>
+        </dl>
+
+        <!-- 약관 동의 체크박스 -->
+        <div class="terms">
+            <div class="tit">회원가입 약관</div>
+            <div class="terms-contents">약관 내용 뭐하지</div>
+            <input type="checkbox" name="agree" value="true" id="agree" th:field="*{agree}" />
+            <label for="agree">약관 동의</label>
+            <div class="error" th:each="err : ${#fields.errors('agree')}" th:text="${err}"></div>
+        </div>
+
+        <!-- 버튼 -->
+        <div class="buttons">
+            <button type="reset">다시 입력</button>
+            <button type="submit">가입하기</button>
+        </div>
+    </form>
+</main>
+</body>
+
 </html>
