@@ -4,8 +4,10 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
+import java.io.Serializable;
+
 @Data
-public class RequestLogin {
+public class RequestLogin implements Serializable {
 
     @NotBlank
     private String id;

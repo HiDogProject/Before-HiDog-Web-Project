@@ -1,4 +1,6 @@
 package org.hidog.global.entities;
 
-public class BaseEntity {
+import java.io.Serializable;
+
+public class BaseEntity implements Serializable {
 }
