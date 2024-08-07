@@ -9,7 +9,7 @@ import lombok.Data;
 @Data
 public class RequestJoin {
 
-    @NotBlank
+    @NotBlank @Size(min = 5, max = 20)
     private String id;
 
     @NotBlank @Email
