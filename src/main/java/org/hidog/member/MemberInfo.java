@@ -1,4 +1,6 @@
 package org.hidog.member;
 
-public class MemberInfo {
+import java.io.Serializable;
+
+public class MemberInfo implements Serializable {
 }
