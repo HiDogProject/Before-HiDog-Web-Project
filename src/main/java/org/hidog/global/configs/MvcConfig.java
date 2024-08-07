@@ -9,7 +9,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 @EnableJpaAuditing //Spring boot 애플리케이션 JPA 감독(auditing) 기능 활성화합니다.
-@EnableDiscoveryClient
 public class MvcConfig implements WebMvcConfigurer {
 
 
