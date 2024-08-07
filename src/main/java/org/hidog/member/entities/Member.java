@@ -3,13 +3,14 @@ package org.hidog.member.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.io.Serializable;
 import java.util.List;
 
 @Data
 @Entity
 @Builder
 @NoArgsConstructor @AllArgsConstructor
-public class Member {
+public class Member implements Serializable {
 
     @Id @GeneratedValue
     private Long seq;
