@@ -15,16 +15,6 @@
     <form name="frmRegist" method="POST" th:action="@{/app/member/join}" autocomplete="off" th:object="${requestJoin}">
         <!-- 글로벌 오류 메시지 -->
         <div class="error global" th:each="err : ${#fields.globalErrors()}" th:text="${err}"></div>
-
-        <!-- 아이디 입력 필드 -->
-        <dl>
-            <dt>아이디</dt>
-            <dd>
-                <input type="text" name="id" th:field="*{id}" />
-                <div class="error" th:each="err : ${#fields.errors('id')}" th:text="${err}"></div>
-            </dd>
-        </dl>
-
         <!-- 이메일 입력 필드 -->
         <dl>
             <dt>이메일</dt>
@@ -56,8 +46,8 @@
         <dl>
             <dt>닉네임</dt>
             <dd>
-                <input type="text" name="nickName" th:field="*{nickName}" />
-                <div class="error" th:each="err : ${#fields.errors('nickName')}" th:text="${err}"></div>
+                <input type="text" name="userName" th:field="*{userName}" />
+                <div class="error" th:each="err : ${#fields.errors('userName')}" th:text="${err}"></div>
             </dd>
         </dl>
 

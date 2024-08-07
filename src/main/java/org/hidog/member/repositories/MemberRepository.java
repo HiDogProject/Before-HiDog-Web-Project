@@ -1,5 +1,6 @@
 package org.hidog.member.repositories;
 
+import com.querydsl.core.types.dsl.BooleanExpression;
 import org.hidog.member.entities.Member;
 import org.hidog.member.entities.QMember;
 import org.springframework.data.jpa.repository.EntityGraph;
@@ -9,12 +10,13 @@ import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import java.util.Optional;
 
 public interface MemberRepository extends JpaRepository<Member, Long>, QuerydslPredicateExecutor<Member> {
+
     @EntityGraph(attributePaths = "authorities")
-    Optional<Member> findById(String id);
+    Optional<Member> findByEmail(String email);
 
-    default boolean exists(String id) {
+    default boolean existsByEmail(String email) {
         QMember member = QMember.member;
-
-        return exists(member.id.eq(id));
+        BooleanExpression predicate = member.email.eq(email);
+        return exists(predicate);
     }
 }
