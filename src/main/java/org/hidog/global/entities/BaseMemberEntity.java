@@ -1,5 +1,6 @@
 package org.hidog.global.entities;
 
+import java.io.Serializable;
 import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.MappedSuperclass;
@@ -13,7 +14,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @MappedSuperclass
 @Getter @Setter
 @EntityListeners(AuditingEntityListener.class)
-public abstract class BaseMemberEntity extends BaseEntity {
+public abstract class BaseMemberEntity extends BaseEntity implements Serializable {
 
     @CreatedBy
     @Column(length=65, updatable = false)
