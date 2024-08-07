@@ -2,7 +2,6 @@ package org.hidog.member.controllers;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.hidog.member.validators.JoinValidator;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
@@ -16,10 +15,7 @@ import org.springframework.web.bind.annotation.*;
 @SessionAttributes("requestLogin")
 public class MemberController  {
 
-    @GetMapping("/join")
-    public String join(@ModelAttribute RequestJoin form) {
-        return "front/member/join";
-    }
+
 
     @PostMapping("/join")
     public String joinPs(@Valid RequestJoin form, Errors errors) {
