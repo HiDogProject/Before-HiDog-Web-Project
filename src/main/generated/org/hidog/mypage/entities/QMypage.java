@@ -22,7 +22,7 @@ public class QMypage extends EntityPathBase<Mypage> {
 
     public static final QMypage mypage = new QMypage("mypage");
 
-    public final StringPath id = createString("id");
+    public final NumberPath<Long> id = createNumber("id", Long.class);
 
     public final org.hidog.member.entities.QMember member;
 
