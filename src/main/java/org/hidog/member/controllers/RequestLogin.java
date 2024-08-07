@@ -10,8 +10,8 @@ import java.io.Serializable;
 public class RequestLogin implements Serializable {
 
     @NotBlank
-    private String id;
-   @NotBlank @Size(min = 8, max = 20)
+    private String email;
+    @NotBlank @Size(min = 8, max = 20)
     private String password;
 
     private boolean success = true;

@@ -1,4 +1,4 @@
-package org.choongang.global.entities;
+package org.hidog.global.entities;
 
 import static com.querydsl.core.types.PathMetadataFactory.*;
 
@@ -15,7 +15,7 @@ import com.querydsl.core.types.Path;
 @Generated("com.querydsl.codegen.DefaultSupertypeSerializer")
 public class QBaseMemberEntity extends EntityPathBase<BaseMemberEntity> {
 
-    private static final long serialVersionUID = -139652596L;
+    private static final long serialVersionUID = -903347731L;
 
     public static final QBaseMemberEntity baseMemberEntity = new QBaseMemberEntity("baseMemberEntity");
 

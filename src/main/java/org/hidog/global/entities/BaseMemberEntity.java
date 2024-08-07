@@ -1,4 +1,4 @@
-package org.choongang.global.entities;
+package org.hidog.global.entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;
