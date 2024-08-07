@@ -2,8 +2,10 @@ package org.hidog.member.controllers;
 
 import lombok.Data;
 
+import java.io.Serializable;
+
 @Data
-public class RequestLogin {
+public class RequestLogin implements Serializable {
 
     private String id;
 

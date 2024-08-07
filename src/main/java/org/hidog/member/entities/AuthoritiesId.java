@@ -5,10 +5,12 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.hidog.member.constants.Authority;
 
+import java.io.Serializable;
+
 @EqualsAndHashCode
 @AllArgsConstructor
 @NoArgsConstructor
-public class AuthoritiesId {
+public class AuthoritiesId implements Serializable {
 
     private Member member;
     private Authority authority;
