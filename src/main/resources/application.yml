@@ -51,6 +51,7 @@ spring:
         transport:
           protocol: smtp
         smtp:
+          timeout: 5000
           auth: true
           starttls:
             enable: true
