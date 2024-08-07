@@ -1,14 +1,17 @@
 package org.hidog.member.controllers;
 
+import jakarta.validation.constraints.AssertTrue;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
-@Data
-public class RequestJoin {
+import java.io.Serializable;
 
-    @NotBlank
+@Data
+public class RequestJoin implements Serializable {
+
+    @NotBlank @Size(min = 5, max = 20)
     private String id;
 
     @NotBlank @Email
@@ -27,4 +30,7 @@ public class RequestJoin {
     private String address1;
 
     private String address2;
+
+    @AssertTrue
+    private boolean agree;
 }
