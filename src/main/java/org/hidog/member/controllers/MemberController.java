@@ -1,16 +1,13 @@
 package org.hidog.member.controllers;
 
+
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.hidog.member.validators.JoinValidator;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @Slf4j
 @Controller
@@ -19,10 +16,7 @@ import java.util.List;
 @SessionAttributes("requestLogin")
 public class MemberController  {
 
-    @GetMapping("/join")
-    public String join(@ModelAttribute RequestJoin form) {
-        return "front/member/join";
-    }
+
 
     @PostMapping("/join")
     public String joinPs(@Valid RequestJoin form, Errors errors) {
@@ -39,7 +33,7 @@ public class MemberController  {
     }
 
     @GetMapping("/login")
-    public String login(@Valid @ModelAttribute RequestLogin form,Errors errors){
+    public String login(@Valid @ModelAttribute RequestLogin form, Errors errors){
         String code = form.getCode();
         if (StringUtils.hasText(code)){
             errors.reject(code,form.getDefaultMessage());
