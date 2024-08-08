@@ -12,6 +12,7 @@
                 <a th:href="@{/app/member/logout}" th:text="#{로그아웃}"></a>
                 <a th:href="@{/app/mypage}" th:text="#{마이페이지}"></a>
 
+
                 <a sec:authorize="hasAnyAuthority('ADMIN')" th:href="@{/app/admin}" target="_blank" th:text="#{사이트_관리}"></a>
             </th:block>
         </div>

@@ -36,6 +36,4 @@ public class Member implements Serializable {
     @ToString.Exclude
     @OneToMany(mappedBy = "member")
     private List<Authorities> authorities;
-
-
 }
