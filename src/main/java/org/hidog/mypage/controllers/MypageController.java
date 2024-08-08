@@ -48,7 +48,7 @@ public class MypageController { /* 구성 순서 : 컨트롤러-뷰-엔티티-�
     // 마이 페이지 -> 프로필 클릭 시 이미지 변경 창이 팝업 생성
     @GetMapping("/profile")
     public String changeProfileImage() {
-        return "front/mypage/changeProfile";
+        return "front/mypage/profile";
     }
 
     // 프로필 이미지 변경 후 변경 내용 반영
