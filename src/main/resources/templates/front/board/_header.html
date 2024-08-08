@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<main layout:fragment="content">
+    <section class="board-top">
+        <div class="location">
+            <div>
+                <a th:href="@{/member/login}" th:text="#{HOME}"></a>
+                <a th:href="@{/board/list/{}" th:text="#{게시판_리스트}"></a>
+            </div>
+        </div>
+    </section>
+</main>
+</html>
