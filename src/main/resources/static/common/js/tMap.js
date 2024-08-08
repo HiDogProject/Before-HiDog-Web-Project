@@ -2,6 +2,10 @@
 var map,marker;
 var lonlat;
 var markers = [];
+document.addEventListener('DOMContentLoaded', function() {
+        initTmap();
+    }
+);
 
 function initTmap() {
     // map 생성
