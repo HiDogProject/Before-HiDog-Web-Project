@@ -11,9 +11,6 @@ import java.io.Serializable;
 @Data
 public class RequestJoin implements Serializable {
 
-    @NotBlank @Size(min = 5, max = 20)
-    private String id;
-
     @NotBlank @Email
     private String email;
 
@@ -24,12 +21,12 @@ public class RequestJoin implements Serializable {
     private String confirmPassword;
 
     @NotBlank @Size(min = 2, max = 10)
-    private String nickName;
+    private String userName;
 
     @NotBlank
-    private String address1;
+    private String address;
 
-    private String address2;
+    private String detailAddress;
 
     @AssertTrue
     private boolean agree;
