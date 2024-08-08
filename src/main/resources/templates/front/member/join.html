@@ -12,15 +12,16 @@
 <main layout:fragment="content">
 
     <h1>회원 가입</h1>
-    <form name="frmRegist" method="POST" th:action="@{/app/member/join}" autocomplete="off" th:object="${requestJoin}">
+    <form name="frmRegist" method="POST" th:action="@{join}" autocomplete="off" th:object="${requestJoin}">
         <!-- 글로벌 오류 메시지 -->
         <div class="error global" th:each="err : ${#fields.globalErrors()}" th:text="${err}"></div>
+
         <!-- 이메일 입력 필드 -->
         <dl>
             <dt>이메일</dt>
             <dd>
-                <input type="email" id="email" name="email" th:field="*{email}"/>
-                <div class="error" th:each="err : ${#fields.errors('email')}" th:text="${err}"></div>
+                <input type="email" id="email" name="email" th:field="*{email}" />
+                <div class="error" th:if="${#fields.hasErrors('email')}" th:each="err : ${#fields.errors('email')}" th:text="${err}"></div>
             </dd>
         </dl>
 
@@ -28,8 +29,8 @@
         <dl>
             <dt>비밀번호</dt>
             <dd>
-                <input type="password" name="password" th:field="*{password}" />
-                <div class="error" th:each="err : ${#fields.errors('password')}" th:text="${err}"></div>
+                <input type="password" id="password" name="password" th:field="*{password}" />
+                <div class="error" th:if="${#fields.hasErrors('password')}" th:each="err : ${#fields.errors('password')}" th:text="${err}"></div>
             </dd>
         </dl>
 
@@ -37,8 +38,8 @@
         <dl>
             <dt>비밀번호 확인</dt>
             <dd>
-                <input type="password" name="confirmPassword" th:field="*{confirmPassword}" />
-                <div class="error" th:each="err : ${#fields.errors('confirmPassword')}" th:text="${err}"></div>
+                <input type="password" id="confirmPassword" name="confirmPassword" th:field="*{confirmPassword}" />
+                <div class="error" th:if="${#fields.hasErrors('confirmPassword')}" th:each="err : ${#fields.errors('confirmPassword')}" th:text="${err}"></div>
             </dd>
         </dl>
 
@@ -46,18 +47,20 @@
         <dl>
             <dt>닉네임</dt>
             <dd>
-                <input type="text" name="userName" th:field="*{userName}" />
-                <div class="error" th:each="err : ${#fields.errors('userName')}" th:text="${err}"></div>
+                <input type="text" id="userName" name="userName" th:field="*{userName}" />
+                <div class="error" th:if="${#fields.hasErrors('userName')}" th:each="err : ${#fields.errors('userName')}" th:text="${err}"></div>
             </dd>
         </dl>
+
+        <!-- 주소 입력 필드 -->
         <dl>
             <dt>주소</dt>
             <dd>
                 <input type="text" id="sample6_postcode" placeholder="우편번호">
                 <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
-                <input type="text" id="sample6_address" placeholder="주소"><br>
+                <input type="text" id="sample6_address" name="address" placeholder="주소"><br>
                 <input type="text" id="sample6_extraAddress" placeholder="참고항목">
-                <input type="text" id="sample6_detailAddress" placeholder="상세주소">
+                <input type="text" id="sample6_detailAddress" name="detailAddress" placeholder="상세주소">
             </dd>
         </dl>
 
@@ -67,7 +70,7 @@
             <div class="terms-contents">약관 내용 뭐하지</div>
             <input type="checkbox" name="agree" value="true" id="agree" th:field="*{agree}" />
             <label for="agree">약관 동의</label>
-            <div class="error" th:each="err : ${#fields.errors('agree')}" th:text="${err}"></div>
+            <div class="error" th:if="${#fields.hasErrors('agree')}" th:each="err : ${#fields.errors('agree')}" th:text="${err}"></div>
         </div>
 
         <!-- 버튼 -->
