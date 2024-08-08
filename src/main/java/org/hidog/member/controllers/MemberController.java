@@ -16,7 +16,11 @@ import org.springframework.web.bind.annotation.*;
 @SessionAttributes("requestLogin")
 public class MemberController  {
 
+    @GetMapping("/join")
+    public String join(@ModelAttribute RequestJoin form) {
 
+        return "front/member/join";
+    }
 
     @PostMapping("/join")
     public String joinPs(@Valid RequestJoin form, Errors errors) {
@@ -33,12 +37,24 @@ public class MemberController  {
     }
 
     @GetMapping("/login")
-    public String login(@Valid @ModelAttribute RequestLogin form, Errors errors){
+    public String login(@ModelAttribute RequestLogin form, Errors errors){
         String code = form.getCode();
         if (StringUtils.hasText(code)){
-            errors.reject(code,form.getDefaultMessage());
-
+            errors.reject(code, form.getDefaultMessage());
         }
         return "front/member/login";
+
     }
-}
+
+    /*
+    @PostMapping("/login")
+    public String doLogin(@Valid @ModelAttribute RequestLogin form, Errors errors) {
+        if (errors.hasErrors()) {
+            return "front/member/login";
+        }
+        // 로그인 처리 로직
+        return "redirect:/main";
+      }
+       */
+    }
+
