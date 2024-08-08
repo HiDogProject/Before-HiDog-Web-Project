@@ -9,8 +9,8 @@
             <dl>
                   <dt th:text="#{아이디}"></dt>
                   <dd>
-                        <input type="text" name="id" th:field="*{userId}">
-                        <div th:if="*{!success}" class="error" th:each="err : ${#fields.errors('userId')}" th:text="${err}"></div>
+                        <input type="text" name="id" th:field="*{id}">
+                        <div th:if="*{!success}" class="error" th:each="err : ${#fields.errors('id')}" th:text="${err}"></div>
                   </dd>
             </dl>
             <dl>
