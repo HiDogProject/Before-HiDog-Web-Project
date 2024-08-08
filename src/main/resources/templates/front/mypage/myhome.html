@@ -4,22 +4,19 @@
     <main layout:fragment="content">
         <h1 th:text="#{마이_페이지}"></h1>
         <div class="buttons">
-            <a th:href="@{/mypage/info}">
+            <a th:href="@{/app/mypage/info}">
                 <button type="submit" th:text="#{회원_정보_보기}"></button>
             </a>
-            <a th:href="@{/mypage/changeInfo}">
-                <button type="button" th:text="#{회원_정보_수정하기}"></button>
-            </a>
-            <a th:href="@{/mypage/changeProfile}">
+            <a th:href="@{/app/mypage/profile}">
                 <button type="submit" th:text="#{프로필_수정하기}"></button>
             </a>
-            <a th:href="@{/mypage/like}">
+            <a th:href="@{/app/mypage/like}">
                 <button type="button" th:text="#{찜_목록_보기}"></button>
             </a>
-            <a th:href="@{/mypage/post}">
+            <a th:href="@{/app/mypage/post}">
                 <button type="button" th:text="#{내가_쓴_글_보기}"></button>
             </a>
-            <a th:href="@{/mypage/sellAndBuy}">
+            <a th:href="@{/app/mypage/sellAndBuy}">
                 <button type="button" th:text="#{판매_내역_구매_내역_보기}"></button>
             </a>
         </div>
