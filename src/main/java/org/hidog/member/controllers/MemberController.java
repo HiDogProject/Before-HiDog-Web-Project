@@ -83,26 +83,3 @@ public class MemberController implements ExceptionProcessor {
         model.addAttribute("addScript", addScript);
     }
 }
-    /*
-    @GetMapping("/join")
-    public String join(@ModelAttribute RequestJoin form, Model model) {
-        model.addAttribute("addScript", List.of("joinAddress"));
-
-        return "front/member/join";
-    }
-
-    @PostMapping("/join")
-    public String joinPs(@Valid RequestJoin form, Errors errors) {
-
-        joinValidator.validate(form, errors);
-
-        if (errors.hasErrors()) {
-            return "front/member/join";
-        }
-
-        memberSaveService.save(form); // 회원 가입 처리
-
-        return "redirect:/member/login";
-    }
-
-     */
