@@ -34,13 +34,13 @@ public class MypageController { /* 구성 순서 : 컨트롤러-뷰-엔티티-�
     }
 
     // 마이 페이지 -> 회원 정보 수정 버튼 클릭 시 본인 인증 후 회원 정보 수정 페이지로 이동
-    @GetMapping("/info/change")
+    @GetMapping("/changInfo")
     public String changeMemberInfo() {
         return "front/mypage/changeInfo";
     }
 
     // 회원 정보 수정 페이지에서 수정 내용 저장 및 정보 변경, 마이 페이지 홈으로 이동
-    @PostMapping("/info/change")
+    @PostMapping("/changeInfo")
     public String saveChangedMemberInfo() {
         return "redirect:/myhome";
     }
@@ -70,7 +70,7 @@ public class MypageController { /* 구성 순서 : 컨트롤러-뷰-엔티티-�
     }
 
     // 마이 페이지 -> 판매 & 구매 내역 버튼 클릭 시 판매 & 구매 내역으로 이동
-    @GetMapping("/transactions")
+    @GetMapping("/sellAndBuy")
     public String viewSellAndBuy() {
         return "front/mypage/sellAndBuy";
     }
