@@ -15,8 +15,8 @@ public class MapController {
 
     @GetMapping("/main")
     public String join(Model model) {
-        model.addAttribute("addScript", List.of("tMap"));
-        model.addAttribute("addCss", List.of("tMap"));
+        model.addAttribute("addCommonScript", List.of("tMap"));
+        model.addAttribute("addCommonCss", List.of("tMap"));
         return "front/map/tMap";
     }
 }
